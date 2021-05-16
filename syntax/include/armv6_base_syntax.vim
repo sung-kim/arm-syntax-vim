@@ -18,13 +18,16 @@ exec 'syn match armv6Instr "\%(PKHBT\|PKHTB\|SXTH\|SXTB16\|SXTB\|SXTAH\|SXTAB16\
 
 exec 'syn match armv6Mul "\%(UMAAL\|SMUAD\|SMLAD\|SMLALD\|SMUSD\|SMLSD\|SMLSLD\|SMMUL\|SMMLA\|SMMLS\)' . armCond . '\>"'
 
-exec 'syn match armv6LDR "\%(LDREX[HBD]\)' . armCond . '\>"'
-exec 'syn match armv6STR "\%(STREX[HBD]\|CLREX\)' . armCond . '\>"'
+exec 'syn match armv6LDR "\%(LDREX\)\%([HBD]\)\?' . armCond . '\>"'
+exec 'syn match armv6STR "\(\%(STREX\)\|\%(CLREX\)\)\%([HBD]\)\?' . armCond . '\>"'
 
 syn match armv6InstrNoCond "\%(IT[TE]\{0,3\}\|CBN\?Z\|TBB\|TBH\|CPSID\|CPSIE\|CPS\|SETEND\|SRS\%(IA\|IB\|DA\|DB\)\|RFE\%(IA\|IB\|DA\|DB\)\)\>"
 syn keyword armv6InstrNoCond MRRC2 MCRR2
 
-exec 'syn match armv7Instr "\%(DBG\|DMB\|DSB\|ISB\|SEV\|WFE\|WFI\|YIELD\)' . armCond . '\>"'
+exec 'syn match armv7Instr "\%(DBG\|SEV\|WFE\|WFI\|YIELD\)' . armCond . '\>"'
+" Split out barriers since they have special options
+" - technically ST isn't an option for ISB, but w.e.
+exec 'syn match armv7Instr "\%(\(DMB\)\|\(DSB\)\|\(ISB\)\)\s\+\%(\(SY\)\|\(ST\)\)\?' . armCond . '\>"'
 
 "
 " VFP/NEON

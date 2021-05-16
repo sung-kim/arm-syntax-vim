@@ -35,7 +35,7 @@ if version >= 508 || !exists("did_arm_syntax_inits")
   HiLink armv6Mul           armv6Instructions
   HiLink armv6LDR           armv6Instructions
   HiLink armv6STR           armv6Instructions
-  
+
   HiLink armv7Instr         armv6Instructions
   HiLink armVfpInstr        armv6Instructions
   HiLink armNeonInstr       armv6Instructions
