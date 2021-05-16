@@ -1,0 +1,144 @@
+@ A few ARMv7 disassembly snippets
+
+00000010 <__do_global_dtors_aux>:
+  10:	b510      	push	{r4, lr}
+  12:	4c05      	ldr	r4, [pc, #20]	; (28 <__do_global_dtors_aux+0x18>)
+  14:	7823      	ldrb	r3, [r4, #0]
+  16:	b933      	cbnz	r3, 26 <__do_global_dtors_aux+0x16>
+  18:	4b04      	ldr	r3, [pc, #16]	; (2c <__do_global_dtors_aux+0x1c>)
+  1a:	b113      	cbz	r3, 22 <__do_global_dtors_aux+0x12>
+  1c:	4804      	ldr	r0, [pc, #16]	; (30 <__do_global_dtors_aux+0x20>)
+  1e:	f3af 8000 	nop.w
+  22:	2301      	movs	r3, #1
+  24:	7023      	strb	r3, [r4, #0]
+  26:	bd10      	pop	{r4, pc}
+  28:	00000660 	andeq	r0, r0, r0, ror #12
+  2c:	00000000 	andeq	r0, r0, r0
+  30:	000005dc 	ldrdeq	r0, [r0], -ip
+
+00000034 <frame_dummy>:
+  34:	4b08      	ldr	r3, [pc, #32]	; (58 <frame_dummy+0x24>)
+  36:	b510      	push	{r4, lr}
+  38:	b11b      	cbz	r3, 42 <frame_dummy+0xe>
+  3a:	4808      	ldr	r0, [pc, #32]	; (5c <frame_dummy+0x28>)
+  3c:	4908      	ldr	r1, [pc, #32]	; (60 <frame_dummy+0x2c>)
+  3e:	f3af 8000 	nop.w
+  42:	4808      	ldr	r0, [pc, #32]	; (64 <frame_dummy+0x30>)
+  44:	6803      	ldr	r3, [r0, #0]
+  46:	b903      	cbnz	r3, 4a <frame_dummy+0x16>
+  48:	bd10      	pop	{r4, pc}
+  4a:	4b07      	ldr	r3, [pc, #28]	; (68 <frame_dummy+0x34>)
+  4c:	2b00      	cmp	r3, #0
+  4e:	d0fb      	beq.n	48 <frame_dummy+0x14>
+  50:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
+  54:	4718      	bx	r3
+  56:	bf00      	nop
+  58:	00000000 	andeq	r0, r0, r0
+  5c:	000005dc 	ldrdeq	r0, [r0], -ip
+  60:	00000664 	andeq	r0, r0, r4, ror #12
+  64:	0000065c 	andeq	r0, r0, ip, asr r6
+  68:	00000000 	andeq	r0, r0, r0
+
+0000006c <_mainCRTStartup>:
+  6c:	4b15      	ldr	r3, [pc, #84]	; (c4 <_mainCRTStartup+0x58>)
+  6e:	2b00      	cmp	r3, #0
+  70:	bf08      	it	eq
+  72:	4b13      	ldreq	r3, [pc, #76]	; (c0 <_mainCRTStartup+0x54>)
+  74:	469d      	mov	sp, r3
+  76:	f5a3 3a80 	sub.w	sl, r3, #65536	; 0x10000
+  7a:	2100      	movs	r1, #0
+  7c:	468b      	mov	fp, r1
+  7e:	460f      	mov	r7, r1
+  80:	4813      	ldr	r0, [pc, #76]	; (d0 <_mainCRTStartup+0x64>)
+  82:	4a14      	ldr	r2, [pc, #80]	; (d4 <_mainCRTStartup+0x68>)
+  84:	1a12      	subs	r2, r2, r0
+  86:	f000 fa91 	bl	5ac <memset>
+  8a:	4b0f      	ldr	r3, [pc, #60]	; (c8 <_mainCRTStartup+0x5c>)
+  8c:	2b00      	cmp	r3, #0
+  8e:	d000      	beq.n	92 <_mainCRTStartup+0x26>
+  90:	4798      	blx	r3
+  92:	4b0e      	ldr	r3, [pc, #56]	; (cc <_mainCRTStartup+0x60>)
+  94:	2b00      	cmp	r3, #0
+  96:	d000      	beq.n	9a <_mainCRTStartup+0x2e>
+  98:	4798      	blx	r3
+  9a:	2000      	movs	r0, #0
+  9c:	2100      	movs	r1, #0
+  9e:	0004      	movs	r4, r0
+  a0:	000d      	movs	r5, r1
+  a2:	480d      	ldr	r0, [pc, #52]	; (d8 <_mainCRTStartup+0x6c>)
+  a4:	2800      	cmp	r0, #0
+  a6:	d002      	beq.n	ae <_mainCRTStartup+0x42>
+  a8:	480c      	ldr	r0, [pc, #48]	; (dc <_mainCRTStartup+0x70>)
+  aa:	f3af 8000 	nop.w
+  ae:	f000 fa57 	bl	560 <__libc_init_array>
+  b2:	0020      	movs	r0, r4
+  b4:	0029      	movs	r1, r5
+  b6:	f000 f985 	bl	3c4 <main>
+  ba:	f000 fa3d 	bl	538 <exit>
+  be:	bf00      	nop
+  c0:	00080000 	andeq	r0, r8, r0
+  c4:	00003ffc 	strdeq	r3, [r0], -ip
+  c8:	00000000 	andeq	r0, r0, r0
+  cc:	00000000 	andeq	r0, r0, r0
+  d0:	00000660 	andeq	r0, r0, r0, ror #12
+  d4:	0000067c 	andeq	r0, r0, ip, ror r6
+  d8:	00000000 	andeq	r0, r0, r0
+  dc:	00000000 	andeq	r0, r0, r0
+
+00000490 <__wrap__exit>:
+ 490:	4b02      	ldr	r3, [pc, #8]	; (49c <__wrap__exit+0xc>)
+ 492:	68db      	ldr	r3, [r3, #12]
+ 494:	3301      	adds	r3, #1
+ 496:	d1fb      	bne.n	490 <__wrap__exit>
+ 498:	4770      	bx	lr
+ 49a:	bf00      	nop
+ 49c:	f2400000 	vhadd.s8	d16, d0, d0
+
+000004dc <_Z7startupv>:
+ 4dc:	b508      	push	{r3, lr}
+ 4de:	f64e 5088 	movw	r0, #60808	; 0xed88
+ 4e2:	f2ce 0000 	movt	r0, #57344	; 0xe000
+ 4e6:	6801      	ldr	r1, [r0, #0]
+ 4e8:	f04f 020f 	mov.w	r2, #15
+ 4ec:	ea4f 5202 	mov.w	r2, r2, lsl #20
+ 4f0:	ea41 0102 	orr.w	r1, r1, r2
+ 4f4:	6001      	str	r1, [r0, #0]
+ 4f6:	f3bf 8f4f 	dsb	sy
+ 4fa:	f3bf 8f6f 	isb	sy
+ 4fe:	f04f 73e0 	mov.w	r3, #29360128	; 0x1c00000
+ 502:	eee1 3a10 	vmsr	fpscr, r3
+ 506:	f1a3 6378 	sub.w	r3, r3, #260046848	; 0xf800000
+ 50a:	2206      	movs	r2, #6
+ 50c:	609a      	str	r2, [r3, #8]
+ 50e:	f7ff ffc7 	bl	4a0 <_Z14clear_rt_statev>
+ 512:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
+ 516:	f7ff bda9 	b.w	6c <_mainCRTStartup>
+ 51a:	0000      	movs	r0, r0
+
+00000538 <exit>:
+ 538:	b508      	push	{r3, lr}
+ 53a:	4b07      	ldr	r3, [pc, #28]	; (558 <exit+0x20>)
+ 53c:	4604      	mov	r4, r0
+ 53e:	b113      	cbz	r3, 546 <exit+0xe>
+ 540:	2100      	movs	r1, #0
+ 542:	f3af 8000 	nop.w
+ 546:	4b05      	ldr	r3, [pc, #20]	; (55c <exit+0x24>)
+ 548:	6818      	ldr	r0, [r3, #0]
+ 54a:	6a83      	ldr	r3, [r0, #40]	; 0x28
+ 54c:	b103      	cbz	r3, 550 <exit+0x18>
+ 54e:	4798      	blx	r3
+ 550:	4620      	mov	r0, r4
+ 552:	f7ff ff9d 	bl	490 <__wrap__exit>
+ 556:	bf00      	nop
+ 558:	00000000 	andeq	r0, r0, r0
+ 55c:	000005d8 	ldrdeq	r0, [r0], -r8
+
+000005bc <_init>:
+ 5bc:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 5be:	bf00      	nop
+ 5c0:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 5c2:	bc08      	pop	{r3}
+ 5c4:	469e      	mov	lr, r3
+ 5c6:	4770      	bx	lr
+
+@ vim: set ft=arm :
